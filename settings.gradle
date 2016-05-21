@@ -1,3 +1,4 @@
 rootProject.name = 'microservices-todo'
 include 'ui'
+include 'todo'
 
