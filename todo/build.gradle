@@ -26,15 +26,3 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.13'
     distributionUrl = 'http://services.gradle.org/distributions/gradle-2.13-all.zip'
 }
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.5
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-}
