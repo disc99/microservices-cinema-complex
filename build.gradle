@@ -1,7 +1,20 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
 apply {
     plugin 'java'
     plugin 'idea'
     plugin 'groovy'
+    plugin 'org.springframework.boot'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -15,6 +28,11 @@ repositories {
 
 dependencies {
     compile 'org.projectlombok:lombok:1.16.8'
+
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    runtime 'org.springframework.boot:spring-boot-devtools'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+
 
     testCompile 'junit:junit:4.+'
     testCompile 'org.codehaus.groovy:groovy-all:2.4.5'
