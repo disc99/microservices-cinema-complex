@@ -8,4 +8,5 @@ Sandbox for Microservices
 - Entiry (Domain-Driven Design)
 - Aggregate (Domain-Driven Design)
 - Repository (Domain-Driven Design)
+- ValueObject (Domain-Driven Design)
 
