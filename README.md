@@ -10,3 +10,7 @@ Sandbox for Microservices
 - Repository (Domain-Driven Design)
 - ValueObject (Domain-Driven Design)
 
+## Technologies
+- Spring Framework
+- Gradle
+- Java
