@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ToDoController {
+public class TodoController {
 
     @PostMapping("/add")
     void add() {}
