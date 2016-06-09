@@ -8,12 +8,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class TodoController {
 
     @PostMapping("/add")
-    void add() {}
+    void add() {
+        // TODO
+    }
 
     @PutMapping("/modify")
-    void modify() {}
+    void modify() {
+        // TODO
+    }
 
     @PostMapping("/do")
-    void done() {}
+    void done() {
+        // TODO
+    }
 
 }
