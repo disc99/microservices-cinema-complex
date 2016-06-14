@@ -1,4 +1,4 @@
-package io.disc99.todo.ui;
+package io.disc99.todo.domain;
 
 
 public class EventBus {
