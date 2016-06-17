@@ -1,4 +1,4 @@
-package io.disc99.todo.application;
+package io.disc99.archetype;
 
 public class CommandBus {
     void regstor(CommandHandler handler) {
