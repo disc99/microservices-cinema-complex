@@ -1,4 +1,4 @@
-package io.disc99.todo.domain;
+package io.disc99.archetype;
 
 
 public class EventBus {
