@@ -5,6 +5,12 @@ import io.disc99.todo.domain.Doing;
 import io.disc99.archetype.Identify;
 
 public class Add implements Command {
+
     private Identify identify;
     private Doing doing;
+
+    public Add(Doing doing) {
+        this.identify = new Identify();
+        this.doing = doing;
+    }
 }

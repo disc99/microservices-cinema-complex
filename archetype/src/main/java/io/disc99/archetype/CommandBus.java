@@ -1,11 +1,11 @@
 package io.disc99.archetype;
 
 public class CommandBus {
-    void regstor(CommandHandler handler) {
+    public void regstor(CommandHandler handler) {
         // TODO
     }
 
-    void dispatch(Command command) {
+    public void dispatch(Command command) {
         // TODO
     }
 }

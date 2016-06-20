@@ -6,11 +6,11 @@ import io.disc99.archetype.Identify;
 public class Todo implements Entity {
     Identify identify;
 
-    void modifed() {
+    public void modifed() {
         // TODO
     }
 
-    void done() {
+    public void done() {
         // TODO
     }
 }
