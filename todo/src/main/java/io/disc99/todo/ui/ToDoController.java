@@ -15,14 +15,9 @@ public class TodoController {
 
     TodoService todoService;
 
-    @PostMapping("/create")
-    void create() {
-        TodoList todoList = todoService.create();
-    }
-
     @PostMapping("/add")
     void add(String doing) {
-        new Add(new Doing(doing));
+        todoService.add(new Add(new Doing(doing)));
     }
 
     @PutMapping("/modify")
