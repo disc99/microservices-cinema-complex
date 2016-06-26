@@ -9,8 +9,8 @@ class CommandBusSpec extends Specification {
         CommandBus bus = new CommandBus()
         GetCommandHandler getHandler = new GetCommandHandler()
         PostCommandHandler postHandler = new PostCommandHandler()
-        bus.regstor(getHandler)
-        bus.regstor(postHandler)
+        bus.register(getHandler)
+        bus.register(postHandler)
         Post post = new Post()
 
 
