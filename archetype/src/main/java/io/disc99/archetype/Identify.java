@@ -8,4 +8,7 @@ public class Identify {
     public Identify() {
         this.value = UUID.randomUUID().toString();
     }
+    public Identify(String value) {
+        this.value = value;
+    }
 }

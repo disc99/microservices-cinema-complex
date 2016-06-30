@@ -12,4 +12,7 @@ public class TodoService {
         commandBus.dispatch(add);
     }
 
+    public void modify(Modify modify) {
+        commandBus.dispatch(modify);
+    }
 }
