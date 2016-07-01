@@ -2,6 +2,7 @@ package io.disc99.todo.ui;
 
 import io.disc99.archetype.Identify;
 import io.disc99.todo.application.Add;
+import io.disc99.todo.application.Do;
 import io.disc99.todo.application.Modify;
 import io.disc99.todo.application.TodoService;
 import io.disc99.todo.domain.Doing;
@@ -28,8 +29,8 @@ public class TodoController {
     }
 
     @PostMapping("/do")
-    void done() {
-        // TODO
+    void done(String id) {
+        todoService.doit(new Do(new Identify(id)))
     }
 
 }

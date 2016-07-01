@@ -15,4 +15,8 @@ public class TodoService {
     public void modify(Modify modify) {
         commandBus.dispatch(modify);
     }
+
+    public void doit(Do aDo) {
+        commandBus.dispatch(aDo);
+    }
 }
