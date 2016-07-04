@@ -1,5 +1,5 @@
 package io.disc99.archetype;
 
-public interface EventHandler {
-    void handle();
+public interface EventHandler<T extends DomainEvent> {
+    void handle(T event);
 }
