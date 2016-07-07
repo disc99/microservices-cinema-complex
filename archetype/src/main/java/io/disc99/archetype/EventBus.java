@@ -15,13 +15,13 @@ public class EventBus {
     }
 
 
-    void register(EventHandler handler) {
+    public void register(EventHandler handler) {
         holder.add(handler);
     }
 
 
     @SuppressWarnings("unchecked")
-    void dispatch(DomainEvent event) {
+    public void dispatch(DomainEvent event) {
         Predicate<EventHandler> byEvent = handler -> Arrays.stream(handler.getClass().getGenericInterfaces())
                 .filter(ParameterizedType.class::isInstance)
                 .anyMatch(type -> ParameterizedType.class.cast(type).getActualTypeArguments()[0] == event.getClass());

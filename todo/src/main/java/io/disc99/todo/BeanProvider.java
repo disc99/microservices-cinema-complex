@@ -9,7 +9,7 @@ public class BeanProvider implements ApplicationContextAware {
 
     private static ApplicationContext context;
 
-    public static <T> T provider(Class<T> clazz) {
+    public static <T> T provide(Class<T> clazz) {
         return context.getBean(clazz);
     }
 

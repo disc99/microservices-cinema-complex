@@ -30,7 +30,7 @@ public class TodoController {
 
     @PostMapping("/do")
     void done(String id) {
-        todoService.doit(new Do(new Identify(id)))
+        todoService.doit(new Do(new Identify(id)));
     }
 
 }
