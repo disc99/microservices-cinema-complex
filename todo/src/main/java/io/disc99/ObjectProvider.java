@@ -1,11 +1,11 @@
-package io.disc99.todo;
+package io.disc99;
 
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-public class BeanProvider implements ApplicationContextAware {
+public class ObjectProvider implements ApplicationContextAware {
 
     private static ApplicationContext context;
 
@@ -15,6 +15,6 @@ public class BeanProvider implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext context) throws BeansException {
-        BeanProvider.context = context;
+        ObjectProvider.context = context;
     }
 }
