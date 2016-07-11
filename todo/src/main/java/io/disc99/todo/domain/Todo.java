@@ -9,18 +9,19 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class Todo implements Entity {
 
+    private final EventBus eventBus = ObjectProvider.provide(EventBus.class);
+
     Identify identify;
     Doing doing;
     DoneAt doneAt;
 
     public void modified(Doing doing) {
         Modified modified = new Modified(identify, doing);
-
-        ObjectProvider.provide(EventBus.class)
-                .dispatch(modified);
+        eventBus.dispatch(modified);
     }
 
     public void done() {
-        // TODO
+        Done done = new Done(identify);
+        eventBus.dispatch(done);
     }
 }
