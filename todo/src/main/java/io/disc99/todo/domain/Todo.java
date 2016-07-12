@@ -17,11 +17,11 @@ public class Todo implements Entity {
 
     public void modified(Doing doing) {
         Modified modified = new Modified(identify, doing);
-        eventBus.dispatch(modified);
+        eventBus.publish(modified);
     }
 
     public void done() {
         Done done = new Done(identify);
-        eventBus.dispatch(done);
+        eventBus.publish(done);
     }
 }

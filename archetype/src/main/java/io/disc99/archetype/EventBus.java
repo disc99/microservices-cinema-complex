@@ -21,7 +21,7 @@ public class EventBus {
 
 
     @SuppressWarnings("unchecked")
-    public void dispatch(DomainEvent event) {
+    public void publish(DomainEvent event) {
         Predicate<EventHandler> byEvent = handler -> Arrays.stream(handler.getClass().getGenericInterfaces())
                 .filter(ParameterizedType.class::isInstance)
                 .anyMatch(type -> ParameterizedType.class.cast(type).getActualTypeArguments()[0] == event.getClass());
