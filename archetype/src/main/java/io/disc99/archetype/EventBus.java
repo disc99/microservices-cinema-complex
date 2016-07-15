@@ -28,6 +28,6 @@ public class EventBus {
 
         holder.stream()
                 .filter(byEvent)
-                .forEach(handler -> handler.handle(event));
+                .forEach(handler -> handler.on(event));
     }
 }
