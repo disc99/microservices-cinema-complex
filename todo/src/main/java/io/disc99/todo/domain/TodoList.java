@@ -17,6 +17,6 @@ public class TodoList implements ValueObject {
     }
 
     public void add(Added added) {
-        eventBus.publish(added);
+        eventBus.apply(added);
     }
 }
