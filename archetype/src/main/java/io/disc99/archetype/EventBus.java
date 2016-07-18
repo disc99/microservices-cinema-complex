@@ -20,6 +20,7 @@ public class EventBus {
     }
 
 
+    // TODO apply, publish, dispatch, or ...
     @SuppressWarnings("unchecked")
     public void apply(DomainEvent event) {
         Predicate<EventHandler> byEvent = handler -> Arrays.stream(handler.getClass().getGenericInterfaces())
