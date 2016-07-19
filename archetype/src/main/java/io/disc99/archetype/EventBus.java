@@ -20,7 +20,10 @@ public class EventBus {
     }
 
 
-    // TODO apply, publish, dispatch, or ...
+    // TODO method name
+    // apply(Axon Framework)
+    // publish(IDDD samples)
+    // dispatch, or ...
     @SuppressWarnings("unchecked")
     public void apply(DomainEvent event) {
         Predicate<EventHandler> byEvent = handler -> Arrays.stream(handler.getClass().getGenericInterfaces())
