@@ -15,7 +15,7 @@ public class EventBus {
     }
 
 
-    public void register(EventHandler handler) {
+    public void subscribe(EventHandler handler) {
         holder.add(handler);
     }
 
