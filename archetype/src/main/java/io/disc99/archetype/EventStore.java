@@ -1,11 +1,8 @@
 package io.disc99.archetype;
 
-public class EventStore {
+public interface EventStore {
 
-    public void add(DomainEvent event) {
+    void add(DomainEvent event);
 
-    }
-
-    public EventStream stream(Class<DomainEvent> clazz, Identify identify) {
-    }
+    EventStream stream(Class<DomainEvent> clazz, Identify identify);
 }
