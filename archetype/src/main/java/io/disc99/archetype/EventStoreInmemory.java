@@ -2,6 +2,10 @@ package io.disc99.archetype;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class EventStoreInMemory implements EventStore {
 
@@ -18,6 +22,9 @@ public class EventStoreInMemory implements EventStore {
 
     @Override
     public EventStream stream(Class<DomainEvent> clazz, Identify identify) {
-        return null;
+        return events.stream()
+                // TODO filter by identify
+                // TODO new EventStream logic
+                .collect(collectingAndThen(toList(), events -> new EventStream(0, events)));
     }
 }
