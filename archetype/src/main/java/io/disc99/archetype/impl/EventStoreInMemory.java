@@ -1,4 +1,9 @@
-package io.disc99.archetype;
+package io.disc99.archetype.impl;
+
+import io.disc99.archetype.DomainEvent;
+import io.disc99.archetype.EventStore;
+import io.disc99.archetype.EventStream;
+import io.disc99.archetype.Identify;
 
 import java.util.ArrayList;
 import java.util.List;
