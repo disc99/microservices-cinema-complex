@@ -6,6 +6,7 @@ import java.util.List;
 
 @AllArgsConstructor
 public class EventStream {
+    Identify identify;
     long version;
     List<DomainEvent> events;
 }

@@ -1,8 +1,11 @@
 package io.disc99.archetype;
 
 
+import lombok.EqualsAndHashCode;
+
 import java.util.UUID;
 
+@EqualsAndHashCode
 public class Identify {
     String value;
     public Identify() {
