@@ -1,6 +1,8 @@
 package io.disc99.archetype.impl;
 
 import io.disc99.archetype.*;
+import lombok.Value;
+import lombok.experimental.Accessors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ public class EventStoreInMemory implements EventStore {
     }
 
     @Override
-    public void add(EventId eventId, DomainEvent event) {
+    public void add(EventStreamId eventId, DomainEvent event) {
         events.add(new StoredEvent(eventId, event));
     }
 
@@ -27,5 +29,12 @@ public class EventStoreInMemory implements EventStore {
                 .filter(event -> event.domainEvent.getClass() == clazz && event.eventId().identify().equals(identify))
                 .map(StoredEvent::domainEvent)
                 .collect(collectingAndThen(toList(), events -> new EventStream(identify, 0, events)));
+    }
+
+    @Value
+    @Accessors(fluent = true)
+    static class StoredEvent {
+        EventStreamId eventId;
+        DomainEvent domainEvent;
     }
 }

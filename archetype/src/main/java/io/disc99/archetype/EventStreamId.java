@@ -5,7 +5,7 @@ import lombok.experimental.Accessors;
 
 @Value
 @Accessors(fluent = true)
-public class EventId {
+public class EventStreamId {
     Class<? extends DomainEvent> clazz;
     Identify identify;
 }
