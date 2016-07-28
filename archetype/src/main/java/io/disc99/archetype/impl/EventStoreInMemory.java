@@ -24,7 +24,7 @@ public class EventStoreInMemory implements EventStore {
     }
 
     @Override
-    public EventStream stream(Class<DomainEvent> clazz, Identify identify) {
+    public EventStream stream(Class<? extends Entity> clazz, Identify identify) {
         return events.stream()
                 .filter(event -> event.domainEvent.getClass() == clazz && event.eventId().identify().equals(identify))
                 .map(StoredEvent::domainEvent)
