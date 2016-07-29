@@ -2,21 +2,36 @@ package io.disc99.archetype
 
 import io.disc99.archetype.impl.EventStoreInMemory
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class EventStoreSpec extends Specification {
 
+    @Unroll
     def "store event"() {
         setup:
         EventStore store = new EventStoreInMemory()
         Identify id1 = new Identify("1")
         Identify id2 = new Identify("2")
-        ItemCreated created = new ItemCreated()
+        ItemCreated created =  new ItemCreated()
+        ItemModified modified   1 =  new ItemModified()
+        ItemModified modified2 =  new ItemModified()
+        ItemDeleted deleted =  new ItemDeleted()
+        BookBought bought =  new BookBought()
+        BookSold sold = new BookSold()
 
         when:
         store.add(new EventStreamId(Item.class, id1), created)
+        store.add(new EventStreamId(Item.class, id1), modified1)
+        store.add(new EventStreamId(Book.class, id1), bought)
+        store.add(new EventStreamId(Item.class, id2), created)
+        store.add(new EventStreamId(Book.class, id1), sold)
+        store.add(new EventStreamId(Item.class, id2), modified2)
+        store.add(new EventStreamId(Item.class, id1), deleted)
 
         then:
-        store.stream(Item.class, id1).events == [created]
+        store.stream(Item.class, id1).events == [created, modified1, deleted]
+        store.stream(Item.class, id2).events == [created, modified2]
+        store.stream(Book.class, id1).events == [bought, sold]
 
     }
 
