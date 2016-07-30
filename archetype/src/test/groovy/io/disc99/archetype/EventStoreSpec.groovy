@@ -13,7 +13,7 @@ class EventStoreSpec extends Specification {
         Identify id1 = new Identify("1")
         Identify id2 = new Identify("2")
         ItemCreated created =  new ItemCreated()
-        ItemModified modified   1 =  new ItemModified()
+        ItemModified modified1 =  new ItemModified()
         ItemModified modified2 =  new ItemModified()
         ItemDeleted deleted =  new ItemDeleted()
         BookBought bought =  new BookBought()
