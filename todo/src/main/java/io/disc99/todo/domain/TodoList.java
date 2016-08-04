@@ -2,6 +2,7 @@ package io.disc99.todo.domain;
 
 import io.disc99.ObjectProvider;
 import io.disc99.archetype.EventBus;
+import io.disc99.archetype.Identify;
 import io.disc99.archetype.ValueObject;
 
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ public class TodoList implements ValueObject {
         list = new ArrayList<>();
     }
 
-    public void add(Added added) {
-        eventBus.apply(added);
+    public void add(Doing doing) {
+
+        eventBus.apply(new Added(new Identify(), doing));
     }
 }
