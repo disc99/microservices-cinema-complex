@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class Added implements DomainEvent {
-    private Identify identify;
+    private TodoId todoId;
     private Doing doing;
-
 }
