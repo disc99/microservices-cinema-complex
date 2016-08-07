@@ -10,11 +10,9 @@ import lombok.experimental.Accessors;
 @Getter
 public class Add implements Command {
 
-    private Identify identify;
     private Doing doing;
 
     public Add(Doing doing) {
-        this.identify = new Identify();
         this.doing = doing;
     }
 }

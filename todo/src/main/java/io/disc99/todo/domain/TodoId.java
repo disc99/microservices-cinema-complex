@@ -8,7 +8,7 @@ public class TodoId {
     TodoId(String value) {
         this.value = value;
     }
-    TodoId() {
+    public TodoId() {
         this.value = UUID.randomUUID().toString();
     }
 }

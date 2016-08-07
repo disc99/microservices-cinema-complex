@@ -17,8 +17,7 @@ public class TodoList implements ValueObject {
         list = new ArrayList<>();
     }
 
-    public void add(Doing doing) {
-
-        eventBus.apply(new Added(new Identify(), doing));
+    public void add(TodoId todoId, Doing doing) {
+        eventBus.apply(new Added(todoId, doing));
     }
 }
