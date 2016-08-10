@@ -1,6 +1,7 @@
 package io.disc99;
 
 import io.disc99.archetype.CommandBus;
+import io.disc99.todo.application.DoHandler;
 import io.disc99.todo.application.ModifyHandler;
 import io.disc99.todo.domain.TodoRepository;
 import io.disc99.todo.infrastructure.TodoRepositoryInMemory;
@@ -14,4 +15,13 @@ public class TodoConfig {
     TodoRepository todoRepository() {
         return new TodoRepositoryInMemory();
     }
+
+    @Bean
+    CommandBus commandBus(TodoRepository todoRepository) {
+        CommandBus commandBus = new CommandBus();
+        commandBus.register(new ModifyHandler(todoRepository));
+        commandBus.register(new DoHandler(todoRepository));
+        return commandBus;
+    }
+
 }
