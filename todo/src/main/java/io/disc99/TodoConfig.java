@@ -1,6 +1,7 @@
 package io.disc99;
 
 import io.disc99.archetype.CommandBus;
+import io.disc99.archetype.EventBus;
 import io.disc99.todo.application.DoHandler;
 import io.disc99.todo.application.ModifyHandler;
 import io.disc99.todo.domain.TodoRepository;
@@ -22,6 +23,12 @@ public class TodoConfig {
         commandBus.register(new ModifyHandler(todoRepository));
         commandBus.register(new DoHandler(todoRepository));
         return commandBus;
+    }
+
+    @Bean
+    EventBus eventBus() {
+        EventBus eventBus = new EventBus();
+        return eventBus;
     }
 
 }
