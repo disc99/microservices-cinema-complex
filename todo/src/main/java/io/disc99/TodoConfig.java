@@ -4,6 +4,7 @@ import io.disc99.archetype.CommandBus;
 import io.disc99.archetype.EventBus;
 import io.disc99.todo.application.DoHandler;
 import io.disc99.todo.application.ModifyHandler;
+import io.disc99.todo.application.TodoService;
 import io.disc99.todo.domain.TodoRepository;
 import io.disc99.todo.infrastructure.TodoRepositoryInMemory;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,12 @@ public class TodoConfig {
     EventBus eventBus() {
         EventBus eventBus = new EventBus();
         return eventBus;
+    }
+
+    @Bean
+    TodoService todoService(CommandBus commandBus, EventBus eventBus) {
+        TodoService todoService = new TodoService(commandBus, eventBus);
+        return todoService;
     }
 
 }
