@@ -28,14 +28,11 @@ public class TodoConfig {
 
     @Bean
     EventBus eventBus() {
-        EventBus eventBus = new EventBus();
-        return eventBus;
+        return new EventBus();
     }
 
     @Bean
     TodoService todoService(CommandBus commandBus, EventBus eventBus) {
-        TodoService todoService = new TodoService(commandBus, eventBus);
-        return todoService;
+        return new TodoService(commandBus, eventBus);
     }
-
 }
