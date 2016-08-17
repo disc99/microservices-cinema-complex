@@ -10,8 +10,8 @@ class EventStoreSpec extends Specification {
     def "store event"() {
         setup:
         EventStore store = new EventStoreInMemory()
-        Identify id1 = new Identify("1")
-        Identify id2 = new Identify("2")
+        Identify id1 = new Id(value:"1")
+        Identify id2 = new Id(value:"2")
         ItemCreated created =  new ItemCreated()
         ItemModified modified1 =  new ItemModified()
         ItemModified modified2 =  new ItemModified()
@@ -35,6 +35,9 @@ class EventStoreSpec extends Specification {
 
     }
 
+    static class Id implements Identify {
+        String value;
+    }
     static class Item implements Entity {}
     static class ItemCreated implements DomainEvent {}
     static class ItemModified implements DomainEvent {}

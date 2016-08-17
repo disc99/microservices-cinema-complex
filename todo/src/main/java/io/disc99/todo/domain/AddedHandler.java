@@ -12,6 +12,6 @@ public class AddedHandler implements EventHandler<Added> {
 
     @Override
     public void on(Added event) {
-        eventStore.add(new EventStreamId(Added.class, event.todoId()), event);
+        eventStore.add(new EventStreamId(Todo.class, event.todoId()), event);
     }
 }
