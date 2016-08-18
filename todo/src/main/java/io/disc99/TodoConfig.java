@@ -2,6 +2,8 @@ package io.disc99;
 
 import io.disc99.archetype.CommandBus;
 import io.disc99.archetype.EventBus;
+import io.disc99.archetype.EventStore;
+import io.disc99.archetype.impl.EventStoreInMemory;
 import io.disc99.todo.application.DoHandler;
 import io.disc99.todo.application.ModifyHandler;
 import io.disc99.todo.application.TodoService;
@@ -24,6 +26,11 @@ public class TodoConfig {
         commandBus.register(new ModifyHandler(todoRepository));
         commandBus.register(new DoHandler(todoRepository));
         return commandBus;
+    }
+
+    @Bean
+    EventStore eventStore() {
+        return new EventStoreInMemory();
     }
 
     @Bean
