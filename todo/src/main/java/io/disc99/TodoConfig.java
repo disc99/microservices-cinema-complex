@@ -7,6 +7,7 @@ import io.disc99.archetype.impl.EventStoreInMemory;
 import io.disc99.todo.application.DoHandler;
 import io.disc99.todo.application.ModifyHandler;
 import io.disc99.todo.application.TodoService;
+import io.disc99.todo.domain.AddedHandler;
 import io.disc99.todo.domain.TodoRepository;
 import io.disc99.todo.infrastructure.TodoRepositoryInMemory;
 import org.springframework.context.annotation.Bean;
@@ -32,10 +33,12 @@ public class TodoConfig {
     EventStore eventStore() {
         return new EventStoreInMemory();
     }
-
+    
     @Bean
-    EventBus eventBus() {
-        return new EventBus();
+    EventBus eventBus(EventStore eventStore) {
+        EventBus eventBus = new EventBus();
+        eventBus.subscribe(new AddedHandler(eventStore));
+        return eventBus;
     }
 
     @Bean
