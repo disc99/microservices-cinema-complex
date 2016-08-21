@@ -7,9 +7,7 @@ import io.disc99.todo.application.TodoService;
 import io.disc99.todo.domain.Doing;
 import io.disc99.todo.domain.TodoId;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -18,8 +16,8 @@ public class TodoController {
     TodoService todoService;
 
     @PostMapping("/add")
-    void add(String doing) {
-        todoService.add(new Add(new Doing(doing)));
+    void add(@RequestBody AddRequest request) {
+        todoService.add(new Add(new Doing(request.getDoing())));
     }
 
     @PutMapping("/modify")
