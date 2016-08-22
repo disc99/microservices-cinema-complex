@@ -10,9 +10,9 @@ import lombok.experimental.Accessors;
 @Getter
 public class Add implements Command {
 
-    private Doing doing;
+    private String doing;
 
-    public Add(Doing doing) {
+    public Add(String doing) {
         this.doing = doing;
     }
 }

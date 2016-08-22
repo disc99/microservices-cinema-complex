@@ -17,7 +17,7 @@ public class TodoController {
 
     @PostMapping("/add")
     void add(@RequestBody AddRequest request) {
-        todoService.add(new Add(new Doing(request.getDoing())));
+        todoService.add(new Add(request.getDoing()));
     }
 
     @PutMapping("/modify")
