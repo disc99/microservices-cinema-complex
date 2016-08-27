@@ -10,6 +10,8 @@ import io.disc99.todo.application.TodoService;
 import io.disc99.todo.domain.AddedHandler;
 import io.disc99.todo.domain.TodoRepository;
 import io.disc99.todo.infrastructure.TodoRepositoryInMemory;
+import io.disc99.todo.query.TodoDao;
+import io.disc99.todo.query.TodoQueryService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,7 +35,7 @@ public class TodoConfig {
     EventStore eventStore() {
         return new EventStoreInMemory();
     }
-    
+
     @Bean
     EventBus eventBus(EventStore eventStore) {
         EventBus eventBus = new EventBus();
@@ -44,5 +46,15 @@ public class TodoConfig {
     @Bean
     TodoService todoService(CommandBus commandBus, EventBus eventBus) {
         return new TodoService(commandBus, eventBus);
+    }
+
+    @Bean
+    TodoDao todoDao() {
+        return new TodoDao();
+    }
+
+    @Bean
+    TodoQueryService todoQueryService(TodoDao todoDao) {
+        return new TodoQueryService(todoDao);
     }
 }
