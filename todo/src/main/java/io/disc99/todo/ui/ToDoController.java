@@ -11,6 +11,8 @@ import io.disc99.todo.query.TodoQueryService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 public class TodoController {
@@ -36,5 +38,10 @@ public class TodoController {
     @GetMapping("/todos/{id}")
     TodoDto findById(@PathVariable String id) {
         return todoQueryService.findById(id);
+    }
+
+    @GetMapping("/todos")
+    List<TodoDto> findAll() {
+        return todoQueryService.findAll();
     }
 }
