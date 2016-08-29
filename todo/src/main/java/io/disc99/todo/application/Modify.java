@@ -12,6 +12,6 @@ import lombok.experimental.Accessors;
 @Getter
 @Accessors(fluent = true)
 public class Modify implements Command {
-    private TodoId identify;
-    private Doing doing;
+    private String identify;
+    private String doing;
 }

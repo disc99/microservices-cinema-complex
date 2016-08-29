@@ -1,7 +1,9 @@
 package io.disc99.todo.application;
 
 import io.disc99.archetype.CommandHandler;
+import io.disc99.todo.domain.Doing;
 import io.disc99.todo.domain.Todo;
+import io.disc99.todo.domain.TodoId;
 import io.disc99.todo.domain.TodoRepository;
 import lombok.AllArgsConstructor;
 
@@ -12,7 +14,7 @@ public class ModifyHandler implements CommandHandler<Modify> {
 
     @Override
     public void handle(Modify command) {
-        Todo todo = todoRepository.find(command.identify());
-        todo.modified(command.doing());
+        Todo todo = todoRepository.find(new TodoId(command.identify()));
+        todo.modified(new Doing(command.doing()));
     }
 }
