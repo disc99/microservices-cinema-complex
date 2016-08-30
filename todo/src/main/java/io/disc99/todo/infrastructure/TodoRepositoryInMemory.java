@@ -7,7 +7,7 @@ import io.disc99.todo.domain.TodoRepository;
 public class TodoRepositoryInMemory implements TodoRepository {
 
     @Override
-    public Todo find(Identify identify) {
+    public Todo findById(Identify identify) {
         // TODO
         return null;
     }

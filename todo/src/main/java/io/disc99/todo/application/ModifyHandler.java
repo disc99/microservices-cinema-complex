@@ -14,7 +14,7 @@ public class ModifyHandler implements CommandHandler<Modify> {
 
     @Override
     public void handle(Modify command) {
-        Todo todo = todoRepository.find(new TodoId(command.identify()));
+        Todo todo = todoRepository.findById(new TodoId(command.identify()));
         todo.modified(new Doing(command.doing()));
     }
 }

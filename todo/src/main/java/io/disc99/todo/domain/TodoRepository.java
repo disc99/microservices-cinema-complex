@@ -4,5 +4,5 @@ import io.disc99.archetype.Identify;
 import io.disc99.archetype.Repository;
 
 public interface TodoRepository extends Repository {
-    Todo find(Identify identify);
+    Todo findById(Identify identify);
 }

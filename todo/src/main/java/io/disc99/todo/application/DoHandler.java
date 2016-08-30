@@ -12,7 +12,7 @@ public class DoHandler implements CommandHandler<Do> {
 
     @Override
     public void handle(Do command) {
-        Todo todo = todoRepository.find(command.identify());
+        Todo todo = todoRepository.findById(command.identify());
         todo.done();
     }
 }
