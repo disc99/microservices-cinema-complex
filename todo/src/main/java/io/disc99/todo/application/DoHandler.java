@@ -2,6 +2,7 @@ package io.disc99.todo.application;
 
 import io.disc99.archetype.CommandHandler;
 import io.disc99.todo.domain.Todo;
+import io.disc99.todo.domain.TodoId;
 import io.disc99.todo.domain.TodoRepository;
 import lombok.AllArgsConstructor;
 
@@ -12,7 +13,7 @@ public class DoHandler implements CommandHandler<Do> {
 
     @Override
     public void handle(Do command) {
-        Todo todo = todoRepository.findById(command.identify());
+        Todo todo = todoRepository.findById(new TodoId(command.identify()));
         todo.done();
     }
 }

@@ -10,5 +10,5 @@ import lombok.experimental.Accessors;
 @Getter
 @Accessors(fluent = true)
 public class Do implements Command {
-    private Identify identify;
+    private String identify;
 }
