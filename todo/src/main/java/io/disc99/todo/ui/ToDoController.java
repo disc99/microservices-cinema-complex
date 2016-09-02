@@ -27,12 +27,12 @@ public class TodoController {
 
     @PutMapping("/modify")
     void modify(String id, String doing) {
-        todoService.modify(new Modify(new TodoId(id), new Doing(doing)));
+        todoService.modify(new Modify(id, doing));
     }
 
     @PostMapping("/do")
     void done(String id) {
-        todoService.doit(new Do(new TodoId(id)));
+        todoService.doit(new Do(id));
     }
 
     @GetMapping("/todos/{id}")
