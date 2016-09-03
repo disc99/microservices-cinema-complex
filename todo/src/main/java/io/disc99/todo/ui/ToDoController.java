@@ -4,8 +4,6 @@ import io.disc99.todo.application.Add;
 import io.disc99.todo.application.Do;
 import io.disc99.todo.application.Modify;
 import io.disc99.todo.application.TodoService;
-import io.disc99.todo.domain.Doing;
-import io.disc99.todo.domain.TodoId;
 import io.disc99.todo.query.TodoDto;
 import io.disc99.todo.query.TodoQueryService;
 import lombok.AllArgsConstructor;
