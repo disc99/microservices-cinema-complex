@@ -1,9 +1,9 @@
 package io.disc99.todo.ui;
 
-import io.disc99.archetype.CommandBus;
 import io.disc99.todo.application.Add;
 import io.disc99.todo.application.Do;
 import io.disc99.todo.application.Modify;
+import io.disc99.todo.application.TodoService;
 import io.disc99.todo.query.TodoDto;
 import io.disc99.todo.query.TodoQueryService;
 import lombok.AllArgsConstructor;
@@ -15,22 +15,22 @@ import java.util.List;
 @AllArgsConstructor
 public class TodoController {
 
+    TodoService todoService;
     TodoQueryService todoQueryService;
-    CommandBus commandBus;
 
     @PostMapping("/add")
     void add(@RequestBody AddRequest request) {
-        commandBus.dispatch(new Add(request.getDoing()));
+        todoService.add(new Add(request.getDoing()));
     }
 
     @PutMapping("/modify")
     void modify(String id, String doing) {
-        commandBus.dispatch(new Modify(id, doing));
+        todoService.modify(new Modify(id, doing));
     }
 
     @PostMapping("/do")
     void done(String id) {
-        commandBus.dispatch(new Do(id));
+        todoService.doit(new Do(id));
     }
 
     @GetMapping("/todos/{id}")
