@@ -12,6 +12,12 @@ public class AddedProjection implements EventHandler<Added> {
 
     @Override
     public void on(Added event) {
-
+        jdbcTemplate.update(
+                "insert into todos(id, doing) values("
+                + event.todoId().value()
+                + ", "
+                + event.doing().value()
+                + ")"
+        );
     }
 }
