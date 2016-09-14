@@ -11,6 +11,7 @@ import io.disc99.todo.domain.AddedHandler;
 import io.disc99.todo.domain.TodoRepository;
 import io.disc99.todo.infrastructure.TodoRepositoryInMemory;
 import io.disc99.todo.query.AddedProjection;
+import io.disc99.todo.query.ModifiedProjection;
 import io.disc99.todo.query.TodoDao;
 import io.disc99.todo.query.TodoQueryService;
 import org.springframework.context.annotation.Bean;
@@ -50,6 +51,7 @@ public class TodoConfig {
         EventBus eventBus = new EventBus();
         eventBus.subscribe(new AddedHandler(eventStore));
         eventBus.subscribe(new AddedProjection(jdbcTemplate));
+        eventBus.subscribe(new ModifiedProjection(jdbcTemplate));
         return eventBus;
     }
 
