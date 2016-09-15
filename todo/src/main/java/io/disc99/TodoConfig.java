@@ -10,10 +10,7 @@ import io.disc99.todo.application.TodoService;
 import io.disc99.todo.domain.AddedHandler;
 import io.disc99.todo.domain.TodoRepository;
 import io.disc99.todo.infrastructure.TodoRepositoryInMemory;
-import io.disc99.todo.query.AddedProjection;
-import io.disc99.todo.query.ModifiedProjection;
-import io.disc99.todo.query.TodoDao;
-import io.disc99.todo.query.TodoQueryService;
+import io.disc99.todo.query.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -52,6 +49,7 @@ public class TodoConfig {
         eventBus.subscribe(new AddedHandler(eventStore));
         eventBus.subscribe(new AddedProjection(jdbcTemplate));
         eventBus.subscribe(new ModifiedProjection(jdbcTemplate));
+        eventBus.subscribe(new DoneProjection(jdbcTemplate));
         return eventBus;
     }
 
