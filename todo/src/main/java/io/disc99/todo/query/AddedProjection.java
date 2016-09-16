@@ -3,21 +3,19 @@ package io.disc99.todo.query;
 import io.disc99.archetype.EventHandler;
 import io.disc99.todo.domain.Added;
 import lombok.AllArgsConstructor;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 @AllArgsConstructor
 public class AddedProjection implements EventHandler<Added> {
 
-    JdbcTemplate jdbcTemplate;
+    NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
     public void on(Added event) {
-        jdbcTemplate.update(
-                "insert into todos(id, doing) values("
-                + event.todoId().value()
-                + ", "
-                + event.doing().value()
-                + ")"
-        );
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("ID", event.todoId().value())
+                .addValue("DOING", event.doing().value());
+        jdbcTemplate.update("INSERT INTO TODOS(ID, DOING) VALUES(:id, :doing)", params);
     }
 }

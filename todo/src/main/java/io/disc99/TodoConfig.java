@@ -14,6 +14,7 @@ import io.disc99.todo.query.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 
@@ -34,8 +35,8 @@ public class TodoConfig {
     }
 
     @Bean
-    JdbcTemplate jdbcTemplate(DataSource dataSource) {
-        return new JdbcTemplate(dataSource);
+    NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource dataSource) {
+        return new NamedParameterJdbcTemplate(dataSource);
     }
 
     @Bean
@@ -44,7 +45,7 @@ public class TodoConfig {
     }
 
     @Bean
-    EventBus eventBus(EventStore eventStore, JdbcTemplate jdbcTemplate) {
+    EventBus eventBus(EventStore eventStore, NamedParameterJdbcTemplate jdbcTemplate) {
         EventBus eventBus = new EventBus();
         eventBus.subscribe(new AddedHandler(eventStore));
         eventBus.subscribe(new AddedProjection(jdbcTemplate));
