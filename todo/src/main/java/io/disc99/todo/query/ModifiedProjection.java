@@ -16,6 +16,6 @@ public class ModifiedProjection implements EventHandler<Modified> {
         MapSqlParameterSource params = new MapSqlParameterSource()
                 .addValue("id", event.todoId().value())
                 .addValue("doing", event.doing().value());
-        jdbcTemplate.update("INSERT INTO TODOS(ID, DOING) VALUES(:id, :doing)", params);
+        jdbcTemplate.update("UPDATE TODOS SET DOING = :doing WHERE ID = :id", params);
     }
 }
