@@ -2,13 +2,14 @@ package io.disc99.todo.domain;
 
 import io.disc99.archetype.DomainEvent;
 import io.disc99.archetype.Identify;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Value;
+import lombok.experimental.Accessors;
 
+@Value
+@Accessors(fluent = true)
 public class Done implements DomainEvent {
-    Identify identify;
+    TodoId todoId;
     DoneAt doneAt;
-
-    public Done(Identify identify) {
-        this.identify = identify;
-        this.doneAt = new DoneAt();
-    }
 }
