@@ -7,13 +7,13 @@ import java.util.List;
 @AllArgsConstructor
 public class TodoQueryService {
 
-    TodoDao todoDao;
-
     public TodoDto findById(String id) {
-        return todoDao.findById(id);
+        // TODO
+        return null;
     }
 
     public List<TodoDto> findAll() {
-        return todoDao.findAll();
+        // TOOD
+        return null;
     }
 }
