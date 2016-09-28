@@ -13,7 +13,6 @@ import io.disc99.todo.infrastructure.TodoRepositoryInMemory;
 import io.disc99.todo.query.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
@@ -60,12 +59,7 @@ public class TodoConfig {
     }
 
     @Bean
-    TodoDao todoDao() {
-        return new TodoDao();
-    }
-
-    @Bean
-    TodoQueryService todoQueryService(TodoDao todoDao) {
-        return new TodoQueryService(todoDao);
+    TodoQueryService todoQueryService(NamedParameterJdbcTemplate jdbcTemplate) {
+        return new TodoQueryService(jdbcTemplate);
     }
 }
