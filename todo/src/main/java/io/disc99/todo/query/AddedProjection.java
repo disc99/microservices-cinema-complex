@@ -16,8 +16,7 @@ public class AddedProjection implements EventHandler<Added> {
         MapSqlParameterSource params = new MapSqlParameterSource()
                 .addValue("id", event.todoId().value())
                 .addValue("doing", event.doing().value())
-                .addValue("status", Status.NOT_DONE)
-                ;
+                .addValue("status", Status.NOT_DONE);
         jdbcTemplate.update("INSERT INTO TODOS(ID, DOING, STATUS) VALUES(:id, :doing, :status)", params);
     }
 }

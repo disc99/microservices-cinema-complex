@@ -2,6 +2,7 @@ package io.disc99.todo.query;
 
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.util.List;
@@ -12,8 +13,9 @@ public class TodoQueryService {
     NamedParameterJdbcTemplate jdbcTemplate;
 
     public TodoDto findById(String id) {
-        // TODO
-        return null;
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("id", id);
+        return jdbcTemplate.queryForObject("SELECT * FROM TODOS WHERE ID = :id", params, new BeanPropertyRowMapper<>());
     }
 
     public List<TodoDto> findAll() {
