@@ -12,4 +12,8 @@ import lombok.experimental.Accessors;
 public class Done implements DomainEvent {
     TodoId todoId;
     DoneAt doneAt;
+    public Done(TodoId todoId) {
+        this.todoId = todoId;
+        this.doneAt = null;
+    }
 }
