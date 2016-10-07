@@ -11,6 +11,7 @@ Sandbox for Microservices
 - CQRS (Command Query Responsibility Segregation)
 - Event Sourcing, Event Store
 - Domain Event (Implementing Domain-Driven Design)
+- DIP (The Dependency Inversion Principle)
 
 ## Technologies
 - Spring Framework
