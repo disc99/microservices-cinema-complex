@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 
 import java.util.List;
 
-@Value
+@AllArgsConstructor
 @Accessors(fluent = true)
 public class Todo implements Entity {
 
@@ -19,10 +19,26 @@ public class Todo implements Entity {
     DoneAt doneAt;
 
     public Todo(List<DomainEvent> domainEvents) {
-        // TODO
-        this.todoId = null;
-        this.doing = null;
-        this.doneAt = null;
+        EventHandler<Added> whenAdded = event -> {
+            if (event.todoId().equals(todoId)) {
+                this.todoId = event.todoId();
+                this.doing = event.doing();
+            }
+        };
+        EventHandler<Modified> whenModified = event -> {
+            if (event.todoId().equals(todoId)) {
+                this.doing = event.doing();
+            }
+        };
+        EventHandler<Done> whenDone = event -> {
+            if (event.todoId().equals(todoId)) {
+                this.doneAt = new DoneAt();
+            }
+        };
+
+        eventBus.subscribe(whenAdded);
+        eventBus.subscribe(whenModified);
+        eventBus.subscribe(whenDone);
     }
 
     public void modified(Doing doing) {

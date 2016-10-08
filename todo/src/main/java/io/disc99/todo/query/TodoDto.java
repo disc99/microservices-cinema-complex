@@ -1,8 +1,8 @@
 package io.disc99.todo.query;
 
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 public class TodoDto {
     String id;
     String doing;
