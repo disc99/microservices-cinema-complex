@@ -21,8 +21,13 @@ import javax.sql.DataSource;
 public class TodoConfig {
 
     @Bean
-    TodoRepository todoRepository() {
-        return new TodoRepositoryInMemory();
+    EventStore eventStore() {
+        return new EventStoreInMemory();
+    }
+
+    @Bean
+    TodoRepository todoRepository(EventStore eventStore) {
+        return new TodoRepositoryInMemory(eventStore);
     }
 
     @Bean
@@ -36,11 +41,6 @@ public class TodoConfig {
     @Bean
     NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource dataSource) {
         return new NamedParameterJdbcTemplate(dataSource);
-    }
-
-    @Bean
-    EventStore eventStore() {
-        return new EventStoreInMemory();
     }
 
     @Bean
