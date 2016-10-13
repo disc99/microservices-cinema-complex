@@ -15,8 +15,8 @@ public class DoneProjection implements EventHandler<Done> {
     public void on(Done event) {
         MapSqlParameterSource params = new MapSqlParameterSource()
                 .addValue("id", event.todoId().value())
-                .addValue("status", Status.DONE)
+                .addValue("done_at", event.doneAt())
                 ;
-        jdbcTemplate.update("UPDATE TODOS SET STATUS = :status WHERE ID = :id", params);
+        jdbcTemplate.update("UPDATE TODOS SET DONE_AT = :done_at WHERE ID = :id", params);
     }
 }
