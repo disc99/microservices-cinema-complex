@@ -17,6 +17,8 @@ public class CommandBus {
         holder.add(handler);
     }
 
+    // TODO name
+    // AXON dispatch
     @SuppressWarnings("unchecked")
     public void dispatch(Command command) {
         Predicate<CommandHandler> byCommand = handler -> Arrays.stream(handler.getClass().getGenericInterfaces())
