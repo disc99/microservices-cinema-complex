@@ -1,18 +1,16 @@
 package io.disc99.todo.application;
 
+import io.disc99.archetype.ApplicationService;
 import io.disc99.archetype.CommandBus;
 import io.disc99.archetype.EventBus;
-import io.disc99.archetype.EventHandler;
-import io.disc99.todo.domain.Added;
 import io.disc99.todo.domain.Doing;
 import io.disc99.todo.domain.TodoId;
 import io.disc99.todo.domain.TodoList;
 import lombok.AllArgsConstructor;
 
-import java.util.function.ToIntBiFunction;
 
 @AllArgsConstructor
-public class TodoService {
+public class TodoService implements ApplicationService {
 
     private CommandBus commandBus;
     private EventBus eventBus;
