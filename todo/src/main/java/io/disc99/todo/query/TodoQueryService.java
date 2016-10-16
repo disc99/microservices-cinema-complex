@@ -19,6 +19,6 @@ public class TodoQueryService {
     }
 
     public List<TodoDto> findAll() {
-        return jdbcTemplate.query("SELECT * FROM TODOS", new BeanPropertyRowMapper<>());
+        return jdbcTemplate.query("SELECT * FROM TODOS", new BeanPropertyRowMapper<>(TodoDto.class));
     }
 }
