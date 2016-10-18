@@ -45,8 +45,8 @@ public class TodoController {
     }
 
     @PostMapping("/do")
-    void done(String id) {
-        todoService.doit(new Do(id));
+    void done(@RequestBody DoRequest request) {
+        todoService.doit(new Do(request.getId()));
     }
 
     @GetMapping("/todos/{id}")
