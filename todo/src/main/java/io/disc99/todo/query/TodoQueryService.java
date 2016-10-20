@@ -15,7 +15,8 @@ public class TodoQueryService {
     public TodoDto findById(String id) {
         MapSqlParameterSource params = new MapSqlParameterSource()
                 .addValue("id", id);
-        return jdbcTemplate.queryForObject("SELECT * FROM TODOS WHERE ID = :id", params, new BeanPropertyRowMapper<>());
+        return jdbcTemplate.queryForObject("SELECT * FROM TODOS WHERE ID = :id",
+                params, new BeanPropertyRowMapper<>(TodoDto.class));
     }
 
     public List<TodoDto> findAll() {
