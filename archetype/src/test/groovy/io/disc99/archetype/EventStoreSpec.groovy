@@ -1,5 +1,6 @@
 package io.disc99.archetype
 
+import groovy.transform.ToString
 import io.disc99.archetype.impl.EventStoreInMemory
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -20,13 +21,13 @@ class EventStoreSpec extends Specification {
         BookSold sold = new BookSold()
 
         when:
-        store.add(new EventStreamId(Item.class, id1), created)
-        store.add(new EventStreamId(Item.class, id1), modified1)
-        store.add(new EventStreamId(Book.class, id1), bought)
-        store.add(new EventStreamId(Item.class, id2), created)
-        store.add(new EventStreamId(Book.class, id1), sold)
-        store.add(new EventStreamId(Item.class, id2), modified2)
-        store.add(new EventStreamId(Item.class, id1), deleted)
+        store.add(new EventStreamId(Item.class, new Id(value:"1")), created)
+        store.add(new EventStreamId(Item.class, new Id(value:"1")), modified1)
+        store.add(new EventStreamId(Book.class, new Id(value:"1")), bought)
+        store.add(new EventStreamId(Item.class, new Id(value:"2")), created)
+        store.add(new EventStreamId(Book.class, new Id(value:"1")), sold)
+        store.add(new EventStreamId(Item.class, new Id(value:"2")), modified2)
+        store.add(new EventStreamId(Item.class, new Id(value:"1")), deleted)
 
         then:
         store.stream(Item.class, id1).events == [created, modified1, deleted]
@@ -37,6 +38,10 @@ class EventStoreSpec extends Specification {
 
     static class Id implements Identify {
         String value;
+        @Override
+        public boolean equals(Object obj) {
+            return value.equals(((Id) obj).value)
+        }
     }
     static class Item implements Entity {}
     static class ItemCreated implements DomainEvent {}
