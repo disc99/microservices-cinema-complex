@@ -1,6 +1,5 @@
 package io.disc99.archetype
 
-import groovy.transform.ToString
 import io.disc99.archetype.impl.EventStoreInMemory
 import spock.lang.Specification
 import spock.lang.Unroll
