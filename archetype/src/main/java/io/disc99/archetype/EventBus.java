@@ -8,15 +8,19 @@ import java.util.function.Predicate;
 
 public class EventBus {
 
-    private Set<EventHandler> holder;
+    private Set<EventHandler> handlers;
+
+    public EventBus(Set<EventHandler> handlers) {
+        this.handlers = handlers;
+    }
 
     public EventBus() {
-        this.holder = new HashSet<>();
+        this.handlers = new HashSet<>();
     }
 
 
     public void subscribe(EventHandler handler) {
-        holder.add(handler);
+        handlers.add(handler);
     }
 
 
@@ -30,7 +34,7 @@ public class EventBus {
                 .filter(ParameterizedType.class::isInstance)
                 .anyMatch(type -> ParameterizedType.class.cast(type).getActualTypeArguments()[0] == event.getClass());
 
-        holder.stream()
+        handlers.stream()
                 .filter(byEvent)
                 .forEach(handler -> handler.on(event));
     }
