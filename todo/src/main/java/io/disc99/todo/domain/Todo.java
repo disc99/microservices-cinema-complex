@@ -6,7 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Value;
 import lombok.experimental.Accessors;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 @AllArgsConstructor
 @Accessors(fluent = true)
@@ -39,6 +43,10 @@ public class Todo implements Entity {
         eventBus.subscribe(whenAdded);
         eventBus.subscribe(whenModified);
         eventBus.subscribe(whenDone);
+
+        // TODO
+        EventBus eventBus = new EventBus(new HashSet<>(asList(whenAdded, whenModified, whenDone)));
+        domainEvents.forEach(eventBus::apply);
     }
 
     public void modified(Doing doing) {
