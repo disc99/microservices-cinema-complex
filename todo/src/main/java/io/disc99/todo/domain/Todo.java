@@ -23,21 +23,18 @@ public class Todo implements Entity {
     DoneAt doneAt;
 
     public Todo(List<DomainEvent> domainEvents) {
-        EventHandler<Added> whenAdded = event -> {
-            if (event.todoId().equals(todoId)) {
-                this.todoId = event.todoId();
-                this.doing = event.doing();
+        EventHandler<Added> whenAdded = new EventHandler<Added>() {
+            @Override
+            public void on(Added event) {
+                    Todo.this.todoId = event.todoId();
+                    Todo.this.doing = event.doing();
             }
         };
         EventHandler<Modified> whenModified = event -> {
-            if (event.todoId().equals(todoId)) {
-                this.doing = event.doing();
-            }
+            this.doing = event.doing();
         };
         EventHandler<Done> whenDone = event -> {
-            if (event.todoId().equals(todoId)) {
-                this.doneAt = new DoneAt();
-            }
+            this.doneAt = new DoneAt();
         };
 
         eventBus.subscribe(whenAdded);
