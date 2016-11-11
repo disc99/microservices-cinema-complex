@@ -7,6 +7,7 @@ import io.disc99.todo.application.TodoService;
 import io.disc99.todo.query.TodoDto;
 import io.disc99.todo.query.TodoQueryService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class TodoController {
     TodoQueryService todoQueryService;
 
     @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
     void add(@RequestBody AddRequest request) {
 //
 //        TodoId id = Application.start()
