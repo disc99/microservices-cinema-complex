@@ -4,13 +4,16 @@ import io.disc99.todo.application.Add;
 import io.disc99.todo.application.Do;
 import io.disc99.todo.application.Modify;
 import io.disc99.todo.application.TodoService;
+import io.disc99.todo.domain.TodoId;
 import io.disc99.todo.query.TodoDto;
 import io.disc99.todo.query.TodoQueryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -21,7 +24,7 @@ public class TodoController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    void add(@RequestBody AddRequest request) {
+    Map<String, String> add(@RequestBody AddRequest request) {
 //
 //        TodoId id = Application.start()
 //                .when(id -> )
@@ -34,7 +37,8 @@ public class TodoController {
 //        new TodoList().add(todoId,new Doing(add.doing()));
 //        return todoId;
 
-        todoService.add(new Add(request.getDoing()));
+        TodoId id = todoService.add(new Add(request.getDoing()));
+        return Collections.singletonMap("id", id.value());
     }
 
     @PutMapping("/modify")

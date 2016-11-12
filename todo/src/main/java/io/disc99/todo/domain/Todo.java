@@ -23,27 +23,46 @@ public class Todo implements Entity {
     DoneAt doneAt;
 
     public Todo(List<DomainEvent> domainEvents) {
-        EventHandler<Added> whenAdded = new EventHandler<Added>() {
-            @Override
-            public void on(Added event) {
-                    Todo.this.todoId = event.todoId();
-                    Todo.this.doing = event.doing();
-            }
-        };
-        EventHandler<Modified> whenModified = event -> {
-            this.doing = event.doing();
-        };
-        EventHandler<Done> whenDone = event -> {
-            this.doneAt = new DoneAt();
-        };
+//        EventHandler<Added> whenAdded = event -> {
+//                Todo.this.todoId = event.todoId();
+//                Todo.this.doing = event.doing();
+//        };
+//        EventHandler<Modified> whenModified = event -> {
+//            this.doing = event.doing();
+//        };
+//        EventHandler<Done> whenDone = event -> {
+//            this.doneAt = new DoneAt();
+//        };
 
-        eventBus.subscribe(whenAdded);
-        eventBus.subscribe(whenModified);
-        eventBus.subscribe(whenDone);
+        eventBus.subscribe(new WhenAdded());
+        eventBus.subscribe(new WhenModified());
+        eventBus.subscribe(new WhenDone());
 
         // TODO
-        EventBus eventBus = new EventBus(new HashSet<>(asList(whenAdded, whenModified, whenDone)));
+        EventBus eventBus = new EventBus(new HashSet<>(asList(new WhenAdded(), new WhenModified(), new WhenDone())));
         domainEvents.forEach(eventBus::apply);
+    }
+
+    private class WhenAdded implements EventHandler<Added> {
+        @Override
+        public void on(Added event) {
+            Todo.this.todoId = event.todoId();
+            Todo.this.doing = event.doing();
+        }
+    }
+
+    private class WhenModified implements EventHandler<Modified> {
+        @Override
+        public void on(Modified event) {
+            Todo.this.doing = event.doing();
+        }
+    }
+
+    private class WhenDone implements EventHandler<Done> {
+        @Override
+        public void on(Done event) {
+            Todo.this.doneAt = new DoneAt();
+        }
     }
 
     public void modified(Doing doing) {

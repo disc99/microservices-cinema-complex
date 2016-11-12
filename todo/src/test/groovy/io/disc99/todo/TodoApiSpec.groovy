@@ -10,6 +10,8 @@ import org.springframework.test.web.servlet.MvcResult
 import org.springframework.test.web.servlet.ResultActions
 import org.springframework.web.context.WebApplicationContext
 
+import static org.springframework.http.MediaType.APPLICATION_JSON
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*
@@ -32,37 +34,38 @@ class TodoApiSpec extends Specification {
         expect:
         mockMvc.perform(get("/todos"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath('$').isEmpty())
 
-        String json = mockMvc.perform(post("/add").contentType(MediaType.APPLICATION_JSON).content('{"doing":"fix test"}'))
+        String json = mockMvc.perform(post("/add").contentType(APPLICATION_JSON).content('{"doing":"fix test"}'))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath('$.id').exists())
                 .andReturn().getResponse().getContentAsString()
 
         String id = new ObjectMapper().readValue(json, Map).get("id")
+        println id
 
         mockMvc.perform(get("/todos/${id}"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath('$.id').value(id))
                 .andExpect(jsonPath('$.doing').value("fix test"))
 
-        mockMvc.perform(put("/modify").contentType(MediaType.APPLICATION_JSON).content('{"id":'+id+', "doing":"check text"}'))
+        mockMvc.perform(put("/modify").contentType(APPLICATION_JSON).content('{"id":"'+id+'", "doing":"check text"}'))
                 .andExpect(status().isNoContent())
 
         mockMvc.perform(get("/todos/${id}"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath('$.id').value(id))
                 .andExpect(jsonPath('$.doing').value("check text"))
 
-        mockMvc.perform(post("/do").contentType(MediaType.APPLICATION_JSON).content('{"id":'+id+'}'))
+        mockMvc.perform(post("/do").contentType(APPLICATION_JSON).content('{"id":'+id+'}'))
                 .andExpect(status().isNoContent())
 
         mockMvc.perform(get("/todos"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath('$').isEmpty())
     }
 
