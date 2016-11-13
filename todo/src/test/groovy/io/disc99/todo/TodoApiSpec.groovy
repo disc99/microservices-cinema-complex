@@ -52,7 +52,7 @@ class TodoApiSpec extends Specification {
                 .andExpect(jsonPath('$.doing').value("fix test"))
 
         mockMvc.perform(put("/modify").contentType(APPLICATION_JSON).content('{"id":"'+id+'", "doing":"check text"}'))
-                .andExpect(status().isNoContent())
+                .andExpect(status().isOk())
 
         mockMvc.perform(get("/todos/${id}"))
                 .andExpect(status().isOk())
