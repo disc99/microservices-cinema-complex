@@ -43,7 +43,6 @@ class TodoApiSpec extends Specification {
                 .andReturn().getResponse().getContentAsString()
 
         String id = new ObjectMapper().readValue(json, Map).get("id")
-        println id
 
         mockMvc.perform(get("/todos/${id}"))
                 .andExpect(status().isOk())
@@ -60,7 +59,7 @@ class TodoApiSpec extends Specification {
                 .andExpect(jsonPath('$.id').value(id))
                 .andExpect(jsonPath('$.doing').value("check text"))
 
-        mockMvc.perform(post("/do").contentType(APPLICATION_JSON).content('{"id":'+id+'}'))
+        mockMvc.perform(post("/do").contentType(APPLICATION_JSON).content('{"id":"'+id+'"}'))
                 .andExpect(status().isOk())
 
         mockMvc.perform(get("/todos"))
