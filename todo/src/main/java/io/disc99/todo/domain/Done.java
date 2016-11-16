@@ -14,6 +14,6 @@ public class Done implements DomainEvent {
     DoneAt doneAt;
     public Done(TodoId todoId) {
         this.todoId = todoId;
-        this.doneAt = null;
+        this.doneAt = new DoneAt();
     }
 }

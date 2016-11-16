@@ -62,10 +62,12 @@ class TodoApiSpec extends Specification {
         mockMvc.perform(post("/do").contentType(APPLICATION_JSON).content('{"id":"'+id+'"}'))
                 .andExpect(status().isOk())
 
-        mockMvc.perform(get("/todos"))
+        mockMvc.perform(get("/todos/${id}"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath('$').isEmpty())
+                .andExpect(jsonPath('$.id').value(id))
+                .andExpect(jsonPath('$.doing').value("check text"))
+                .andExpect(jsonPath('$.done_at').isNotEmpty())
     }
 
     def "todo validation"() {

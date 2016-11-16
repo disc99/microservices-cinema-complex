@@ -36,6 +36,7 @@ dependencies {
 
     runtime 'org.springframework.boot:spring-boot-devtools'
     runtime 'com.h2database:h2'
+    runtime 'com.vividsolutions:jts:1.13'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 
