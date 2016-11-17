@@ -67,7 +67,7 @@ class TodoApiSpec extends Specification {
                 .andExpect(content().contentType(APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath('$.id').value(id))
                 .andExpect(jsonPath('$.doing').value("check text"))
-                .andExpect(jsonPath('$.done_at').isNotEmpty())
+                .andExpect(jsonPath('$.doneAt').isNotEmpty())
     }
 
     def "todo validation"() {

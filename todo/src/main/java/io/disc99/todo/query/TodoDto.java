@@ -8,5 +8,5 @@ import java.time.LocalDateTime;
 public class TodoDto {
     String id;
     String doing;
-    LocalDateTime done_at;
+    LocalDateTime doneAt;
 }
