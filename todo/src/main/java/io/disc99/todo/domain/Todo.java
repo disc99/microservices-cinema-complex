@@ -2,6 +2,7 @@ package io.disc99.todo.domain;
 
 import io.disc99.archetype.*;
 import io.disc99.ObjectProvider;
+import io.disc99.archetype.impl.EventBusInMemory;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 import lombok.experimental.Accessors;
@@ -39,7 +40,7 @@ public class Todo implements Entity {
         eventBus.subscribe(new WhenDone());
 
         // TODO
-        EventBus eventBus = new EventBus(new HashSet<>(asList(new WhenAdded(), new WhenModified(), new WhenDone())));
+        EventBus eventBus = new EventBusInMemory(new HashSet<>(asList(new WhenAdded(), new WhenModified(), new WhenDone())));
         domainEvents.forEach(eventBus::apply);
     }
 

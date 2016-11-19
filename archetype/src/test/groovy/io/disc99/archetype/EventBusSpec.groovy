@@ -1,5 +1,6 @@
 package io.disc99.archetype
 
+import io.disc99.archetype.impl.EventBusInMemory
 import spock.lang.Specification
 
 
@@ -9,7 +10,7 @@ class EventBusSpec extends Specification {
         int deletedCount = 0
         AddedHandler whenAdded = new AddedHandler()
         EventHandler<Deleted> whenDeleted = {deletedCount++}
-        EventBus bus = new EventBus(new HashSet<EventHandler>([whenDeleted, whenAdded]))
+        EventBus bus = new EventBusInMemory(new HashSet<EventHandler>([whenDeleted, whenAdded]))
 
         when:
         bus.apply(new Added())

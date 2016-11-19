@@ -3,6 +3,7 @@ package io.disc99;
 import io.disc99.archetype.CommandBus;
 import io.disc99.archetype.EventBus;
 import io.disc99.archetype.EventStore;
+import io.disc99.archetype.impl.EventBusInMemory;
 import io.disc99.archetype.impl.EventStoreInMemory;
 import io.disc99.todo.application.DoHandler;
 import io.disc99.todo.application.ModifyHandler;
@@ -45,7 +46,7 @@ public class TodoConfig {
 
     @Bean
     EventBus eventBus(EventStore eventStore, NamedParameterJdbcTemplate jdbcTemplate) {
-        EventBus eventBus = new EventBus();
+        EventBus eventBus = new EventBusInMemory();
         eventBus.subscribe(new AddedHandler(eventStore));
         eventBus.subscribe(new AddedProjection(jdbcTemplate));
         eventBus.subscribe(new ModifiedProjection(jdbcTemplate));
