@@ -1,4 +1,4 @@
-package io.disc99;
+package io.disc99.todo;
 
 import io.disc99.archetype.CommandBus;
 import io.disc99.archetype.EventBus;

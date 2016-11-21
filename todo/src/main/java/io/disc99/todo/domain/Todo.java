@@ -1,13 +1,11 @@
 package io.disc99.todo.domain;
 
 import io.disc99.archetype.*;
-import io.disc99.ObjectProvider;
+import io.disc99.todo.ObjectProvider;
 import io.disc99.archetype.impl.EventBusInMemory;
 import lombok.AllArgsConstructor;
-import lombok.Value;
 import lombok.experimental.Accessors;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
