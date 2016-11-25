@@ -13,8 +13,8 @@
 security:
   oauth2:
     client:
-      client-id: cab5411d0c4276b6f1f7
-      client-secret: c692102464002afefe7d2881cca4f2322350eb5d
+      client-id: 7f5ad3666146d81aa025
+      client-secret: 5c76df8c163d91fc10a47cc4a79ac641fe2c9999
       scope: user
       access-token-uri: https://github.com/login/oauth/access_token
       user-authorization-uri: https://github.com/login/oauth/authorize
