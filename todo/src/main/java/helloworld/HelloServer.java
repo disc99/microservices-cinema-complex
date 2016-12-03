@@ -3,13 +3,10 @@ package helloworld;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import javafx.scene.control.IndexRange;
+import io.grpc.stub.*;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.stream.LongStream;
-
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 public class HelloServer {
     private int port = 50051;
@@ -55,16 +52,14 @@ public class HelloServer {
     private class HrImpl extends GreeterGrpc.GreeterImplBase {
 
         @Override
-        public void sayHello(Helloworld.HelloRequest request,
-                             io.grpc.stub.StreamObserver<Helloworld.HelloReply> responseObserver) {
+        public void sayHello(Helloworld.HelloRequest request, StreamObserver<Helloworld.HelloReply> responseObserver) {
             Helloworld.HelloReply helloReply = Helloworld.HelloReply.newBuilder().build();
             responseObserver.onNext(helloReply);
             responseObserver.onCompleted();
         }
 
         @Override
-        public void listSayHello(Helloworld.HelloRequest request,
-                                 io.grpc.stub.StreamObserver<Helloworld.HelloReply> responseObserver) {
+        public void listSayHello(Helloworld.HelloRequest request, StreamObserver<Helloworld.HelloReply> responseObserver) {
             try {
                 LongStream.range(1, 10).forEach(i -> {
                     responseObserver.onNext(Helloworld.HelloReply.newBuilder().build());
@@ -75,6 +70,28 @@ public class HelloServer {
                 responseObserver.onCompleted();
             }
         }
+
+        @Override
+        public StreamObserver<Helloworld.HelloRequest> sayHellos(StreamObserver<Helloworld.HelloReply> responseObserver) {
+
+            return new StreamObserver<Helloworld.HelloRequest>() {
+                @Override
+                public void onNext(Helloworld.HelloRequest value) {
+
+                }
+
+                @Override
+                public void onError(Throwable t) {
+
+                }
+
+                @Override
+                public void onCompleted() {
+
+                }
+            };
+        }
+
 
     }
 }

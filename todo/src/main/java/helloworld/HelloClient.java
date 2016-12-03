@@ -1,9 +1,9 @@
 package helloworld;
 
-import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
+import io.grpc.stub.StreamObserver;
 
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
@@ -12,12 +12,13 @@ public class HelloClient {
     ManagedChannel channel;
     GreeterGrpc.GreeterBlockingStub blockingStub;
     GreeterGrpc.GreeterFutureStub futureStub;
-
+    GreeterGrpc.GreeterStub stub;
 
     HelloClient(String host, int port) {
         channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext(true).build();
         blockingStub = GreeterGrpc.newBlockingStub(channel);
         futureStub = GreeterGrpc.newFutureStub(channel);
+        stub = GreeterGrpc.newStub(channel);
     }
 
     void shutdown() throws InterruptedException {
@@ -38,6 +39,10 @@ public class HelloClient {
 
     void g1() {
         Iterator<Helloworld.HelloReply> replyIterator = blockingStub.listSayHello(null);
+    }
+
+    void g2() {
+        StreamObserver<Helloworld.HelloRequest> sayHellos = stub.sayHellos(null);
     }
 
     static void main(String[] args) throws Exception {
