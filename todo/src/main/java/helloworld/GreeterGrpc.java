@@ -36,6 +36,15 @@ public class GreeterGrpc {
               "helloworld.Greeter", "SayHello"),
           io.grpc.protobuf.ProtoUtils.marshaller(Helloworld.HelloRequest.getDefaultInstance()),
           io.grpc.protobuf.ProtoUtils.marshaller(Helloworld.HelloReply.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<Helloworld.HelloRequest,
+      Helloworld.HelloReply> METHOD_LIST_SAY_HELLO =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING,
+          generateFullMethodName(
+              "helloworld.Greeter", "ListSayHello"),
+          io.grpc.protobuf.ProtoUtils.marshaller(Helloworld.HelloRequest.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(Helloworld.HelloReply.getDefaultInstance()));
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -71,6 +80,13 @@ public class GreeterGrpc {
       asyncUnimplementedUnaryCall(METHOD_SAY_HELLO, responseObserver);
     }
 
+    /**
+     */
+    public void listSayHello(Helloworld.HelloRequest request,
+        io.grpc.stub.StreamObserver<Helloworld.HelloReply> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_LIST_SAY_HELLO, responseObserver);
+    }
+
     @Override public io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -80,6 +96,13 @@ public class GreeterGrpc {
                 Helloworld.HelloRequest,
                 Helloworld.HelloReply>(
                   this, METHODID_SAY_HELLO)))
+          .addMethod(
+            METHOD_LIST_SAY_HELLO,
+            asyncServerStreamingCall(
+              new MethodHandlers<
+                Helloworld.HelloRequest,
+                Helloworld.HelloReply>(
+                  this, METHODID_LIST_SAY_HELLO)))
           .build();
     }
   }
@@ -109,6 +132,14 @@ public class GreeterGrpc {
       asyncUnaryCall(
           getChannel().newCall(METHOD_SAY_HELLO, getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void listSayHello(Helloworld.HelloRequest request,
+        io.grpc.stub.StreamObserver<Helloworld.HelloReply> responseObserver) {
+      asyncServerStreamingCall(
+          getChannel().newCall(METHOD_LIST_SAY_HELLO, getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -134,6 +165,14 @@ public class GreeterGrpc {
     public Helloworld.HelloReply sayHello(Helloworld.HelloRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_SAY_HELLO, getCallOptions(), request);
+    }
+
+    /**
+     */
+    public java.util.Iterator<Helloworld.HelloReply> listSayHello(
+        Helloworld.HelloRequest request) {
+      return blockingServerStreamingCall(
+          getChannel(), METHOD_LIST_SAY_HELLO, getCallOptions(), request);
     }
   }
 
@@ -165,6 +204,7 @@ public class GreeterGrpc {
   }
 
   private static final int METHODID_SAY_HELLO = 0;
+  private static final int METHODID_LIST_SAY_HELLO = 1;
 
   private static class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -187,6 +227,10 @@ public class GreeterGrpc {
           serviceImpl.sayHello((Helloworld.HelloRequest) request,
               (io.grpc.stub.StreamObserver<Helloworld.HelloReply>) responseObserver);
           break;
+        case METHODID_LIST_SAY_HELLO:
+          serviceImpl.listSayHello((Helloworld.HelloRequest) request,
+              (io.grpc.stub.StreamObserver<Helloworld.HelloReply>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -205,7 +249,8 @@ public class GreeterGrpc {
 
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     return new io.grpc.ServiceDescriptor(SERVICE_NAME,
-        METHOD_SAY_HELLO);
+        METHOD_SAY_HELLO,
+        METHOD_LIST_SAY_HELLO);
   }
 
 }

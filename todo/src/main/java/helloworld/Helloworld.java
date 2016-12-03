@@ -1041,9 +1041,11 @@ public final class Helloworld {
     String[] descriptorData = {
       "\n\020helloworld.proto\022\nhelloworld\"\034\n\014HelloR" +
       "equest\022\014\n\004name\030\001 \001(\t\"\035\n\nHelloReply\022\017\n\007me" +
-      "ssage\030\001 \001(\t2I\n\007Greeter\022>\n\010SayHello\022\030.hel" +
-      "loworld.HelloRequest\032\026.helloworld.HelloR" +
-      "eply\"\000b\006proto3"
+      "ssage\030\001 \001(\t2\217\001\n\007Greeter\022>\n\010SayHello\022\030.he" +
+      "lloworld.HelloRequest\032\026.helloworld.Hello" +
+      "Reply\"\000\022D\n\014ListSayHello\022\030.helloworld.Hel" +
+      "loRequest\032\026.helloworld.HelloReply\"\0000\001b\006p" +
+      "roto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

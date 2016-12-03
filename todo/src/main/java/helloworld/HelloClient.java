@@ -5,23 +5,26 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 public class HelloClient {
-    private final ManagedChannel channel;
-    private final GreeterGrpc.GreeterBlockingStub blockingStub;
+    ManagedChannel channel;
+    GreeterGrpc.GreeterBlockingStub blockingStub;
+    GreeterGrpc.GreeterFutureStub futureStub;
 
-    public HelloClient(String host, int port) {
-        channel = ManagedChannelBuilder.forAddress(host, port)
-                .usePlaintext(true).build();
+
+    HelloClient(String host, int port) {
+        channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext(true).build();
         blockingStub = GreeterGrpc.newBlockingStub(channel);
+        futureStub = GreeterGrpc.newFutureStub(channel);
     }
 
-    public void shutdown() throws InterruptedException {
+    void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
 
-    public void getEmployees() {
+    void getEmployees() {
         Helloworld.HelloReply response;
         long begin = System.currentTimeMillis();
         try {
@@ -33,7 +36,11 @@ public class HelloClient {
         System.out.println("Employees: " + response.getMessage());
     }
 
-    public static void main(String[] args) throws Exception {
+    void g1() {
+        Iterator<Helloworld.HelloReply> replyIterator = blockingStub.listSayHello(null);
+    }
+
+    static void main(String[] args) throws Exception {
         HelloClient client = new HelloClient("localhost", 50051);
         try {
             client.getEmployees();
