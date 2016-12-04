@@ -14,9 +14,10 @@ public class TodoService implements ApplicationService {
 
     private CommandBus commandBus;
     private EventBus eventBus;
+    private UuidService uuidService;
 
     public TodoId add(Add add) {
-        TodoId todoId = new TodoId();
+        TodoId todoId = new TodoId(uuidService.generate("todo"));
 //        commandBus.dispatch(add);
         new TodoList().add(todoId,new Doing(add.doing()));
         return todoId;

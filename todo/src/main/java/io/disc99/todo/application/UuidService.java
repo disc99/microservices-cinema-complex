@@ -6,7 +6,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
 public class UuidService {
-    
+
     ManagedChannel channel;
     UuidGeneratorGrpc.UuidGeneratorBlockingStub stub;
 
@@ -20,5 +20,4 @@ public class UuidService {
                 .setKey(key)
                 .build()).getUuid();
     }
-
 }

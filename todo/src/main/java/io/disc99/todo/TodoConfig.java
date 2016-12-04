@@ -8,6 +8,7 @@ import io.disc99.archetype.impl.EventStoreInMemory;
 import io.disc99.todo.application.DoHandler;
 import io.disc99.todo.application.ModifyHandler;
 import io.disc99.todo.application.TodoService;
+import io.disc99.todo.application.UuidService;
 import io.disc99.todo.domain.AddedHandler;
 import io.disc99.todo.domain.TodoRepository;
 import io.disc99.todo.infrastructure.TodoRepositoryInMemory;
@@ -55,12 +56,17 @@ public class TodoConfig {
     }
 
     @Bean
-    TodoService todoService(CommandBus commandBus, EventBus eventBus) {
-        return new TodoService(commandBus, eventBus);
+    TodoService todoService(CommandBus commandBus, EventBus eventBus, UuidService uuidService) {
+        return new TodoService(commandBus, eventBus, uuidService);
     }
 
     @Bean
     TodoQueryService todoQueryService(NamedParameterJdbcTemplate jdbcTemplate) {
         return new TodoQueryService(jdbcTemplate);
+    }
+
+    @Bean
+    UuidService uuidService() {
+        return new UuidService("localhost", 13009);
     }
 }
