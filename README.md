@@ -20,3 +20,4 @@ Sandbox for Microservices
 - gRPC
   - HTTP/2
   - Protocol Buffers
+- Go (UUID service)
