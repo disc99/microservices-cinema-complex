@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-public class TodoController {
+public class ToDoController {
 
     TodoService todoService;
     TodoQueryService todoQueryService;

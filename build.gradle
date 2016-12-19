@@ -1,12 +1,28 @@
-apply {
-    plugin 'java'
-    plugin 'idea'
+ext {
+    jdk = 1.8
+    encoding = 'UTF-8'
+}
+allprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
-version = '0.0.1'
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    group = 'microservices-cinema-palace'
+    version = '1.0'
+    compileJava {
+        sourceCompatibility = rootProject.jdk
+        targetCompatibility = rootProject.jdk
+        options.encoding = rootProject.encoding
+    }
+    dependencies {
+        testCompile 'junit:junit:4.11'
+    }
+}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.13'
