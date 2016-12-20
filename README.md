@@ -1,4 +1,4 @@
-# microservices-todo
+# microservices-cinema-palace
 Sandbox for Microservices
 
 ## Architecture and patterns
