@@ -1,7 +1,22 @@
 ext {
     jdk = 1.8
     encoding = 'UTF-8'
+    lombok = '1.16.12'
 }
+
+buildscript {
+    ext {
+        springBootVersion = '1.4.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.0'
+    }
+}
+
 allprojects {
     repositories {
         mavenCentral()
@@ -10,6 +25,7 @@ allprojects {
 }
 
 subprojects {
+
     apply plugin: 'java'
     apply plugin: 'idea'
     group = 'microservices-cinema-palace'
@@ -23,6 +39,49 @@ subprojects {
         testCompile 'junit:junit:4.11'
     }
 }
+
+project(':archetype') {
+    dependencies {
+        compile "org.projectlombok:lombok:${lombok}"
+    }
+}
+
+project(':inventory') {
+    apply plugin: 'org.springframework.boot'
+
+    dependencies {
+        compile project(':archetype')
+        compile "org.projectlombok:lombok:${lombok}"
+
+        compile 'org.springframework.boot:spring-boot-starter-jdbc'
+        compile 'org.springframework.boot:spring-boot-starter-web'
+
+//        compile "io.grpc:grpc-netty:${grpcVersion}"
+//        compile "io.grpc:grpc-protobuf:${grpcVersion}"
+//        compile "io.grpc:grpc-stub:${grpcVersion}"
+
+        runtime 'org.springframework.boot:spring-boot-devtools'
+        runtime 'com.h2database:h2'
+        runtime 'com.vividsolutions:jts:1.13'
+
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
+    }
+}
+
+project(':maintenance') {
+    apply plugin: 'org.springframework.boot'
+    dependencies {
+        compile "org.projectlombok:lombok:${lombok}"
+
+        compile "com.vaadin:vaadin-spring-boot-starter:1.1.1"
+        compile "org.springframework.boot:spring-boot-starter-data-jpa"
+        compile "org.springframework.boot:spring-boot-starter-data-rest"
+
+        runtime 'org.springframework.boot:spring-boot-devtools'
+        runtime 'com.h2database:h2'
+    }
+}
+
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.13'
