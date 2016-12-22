@@ -1,4 +1,4 @@
-# microservices-cinema-palace
+# microservices-cinema-complex
 Sandbox for Microservices
 
 ## Architecture and patterns

@@ -1,4 +1,4 @@
-rootProject.name = 'microservices-cinema-palace'
+rootProject.name = 'microservices-cinema-complex'
 include 'archetype'
 include 'ui'
 include 'todo'

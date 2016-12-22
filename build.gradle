@@ -28,7 +28,7 @@ subprojects {
 
     apply plugin: 'java'
     apply plugin: 'idea'
-    group = 'microservices-cinema-palace'
+    group = 'microservices-cinema-complex'
     version = '1.0'
     compileJava {
         sourceCompatibility = rootProject.jdk
