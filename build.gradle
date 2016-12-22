@@ -97,6 +97,6 @@ project(':screen') {
 
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.13'
-    distributionUrl = 'http://services.gradle.org/distributions/gradle-2.13-all.zip'
+    gradleVersion = '3.2.1'
+    distributionUrl = 'http://services.gradle.org/distributions/gradle-3.2.1-all.zip'
 }
