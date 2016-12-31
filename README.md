@@ -21,5 +21,3 @@ Sandbox for Microservices
   - HTTP/2
   - Protocol Buffers
 - Go (UUID service)
-
-plantuml::.docs/usecase.puml[format=svg]

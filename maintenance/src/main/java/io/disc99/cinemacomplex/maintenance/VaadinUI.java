@@ -1,4 +1,4 @@
-package io.disc99.cinemapalace.maintenance;
+package io.disc99.cinemacomplex.maintenance;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

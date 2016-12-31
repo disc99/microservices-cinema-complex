@@ -1,4 +1,4 @@
-package io.disc99.cinemapalace.maintenance;
+package io.disc99.cinemacomplex.maintenance;
 
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.event.ShortcutAction;
