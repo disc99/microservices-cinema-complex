@@ -82,6 +82,34 @@ project(':maintenance') {
     }
 }
 
+project(':theater-admin') {
+    apply plugin: 'org.springframework.boot'
+    dependencies {
+        compile "org.projectlombok:lombok:${lombok}"
+
+        compile "com.vaadin:vaadin-spring-boot-starter:1.1.1"
+        compile "org.springframework.boot:spring-boot-starter-data-jpa"
+        compile "org.springframework.boot:spring-boot-starter-data-rest"
+
+        runtime 'org.springframework.boot:spring-boot-devtools'
+        runtime 'com.h2database:h2'
+    }
+}
+
+project(':agency-admin') {
+    apply plugin: 'org.springframework.boot'
+    dependencies {
+        compile "org.projectlombok:lombok:${lombok}"
+
+        compile "com.vaadin:vaadin-spring-boot-starter:1.1.1"
+        compile "org.springframework.boot:spring-boot-starter-data-jpa"
+        compile "org.springframework.boot:spring-boot-starter-data-rest"
+
+        runtime 'org.springframework.boot:spring-boot-devtools'
+        runtime 'com.h2database:h2'
+    }
+}
+
 project(':screen') {
     apply plugin: 'org.springframework.boot'
     dependencies {
